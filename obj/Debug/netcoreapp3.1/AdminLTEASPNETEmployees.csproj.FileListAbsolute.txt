@@ -2,7 +2,6 @@ D:\ThucTap\CongTyGiao\AdminLTEinASPNETCoreMVC\AdminLTEASPNETEmployees\bin\Debug\
 D:\ThucTap\CongTyGiao\AdminLTEinASPNETCoreMVC\AdminLTEASPNETEmployees\bin\Debug\netcoreapp3.1\appsettings.json
 D:\ThucTap\CongTyGiao\AdminLTEinASPNETCoreMVC\AdminLTEASPNETEmployees\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
 D:\ThucTap\CongTyGiao\AdminLTEinASPNETCoreMVC\AdminLTEASPNETEmployees\bin\Debug\netcoreapp3.1\AdminLTEASPNETEmployees.exe
-D:\ThucTap\CongTyGiao\AdminLTEinASPNETCoreMVC\AdminLTEASPNETEmployees\obj\Debug\netcoreapp3.1\AdminLTEASPNETEmployees.csprojAssemblyReference.cache
 D:\ThucTap\CongTyGiao\AdminLTEinASPNETCoreMVC\AdminLTEASPNETEmployees\obj\Debug\netcoreapp3.1\AdminLTEASPNETEmployees.RazorAssemblyInfo.cache
 D:\ThucTap\CongTyGiao\AdminLTEinASPNETCoreMVC\AdminLTEASPNETEmployees\obj\Debug\netcoreapp3.1\AdminLTEASPNETEmployees.RazorAssemblyInfo.cs
 D:\ThucTap\CongTyGiao\AdminLTEinASPNETCoreMVC\AdminLTEASPNETEmployees\obj\Debug\netcoreapp3.1\AdminLTEASPNETEmployees.AssemblyInfoInputs.cache
@@ -145,3 +144,6 @@ D:\ThucTap\CongTyGiao\AdminLTEinASPNETCoreMVC\AdminLTEASPNETEmployees\obj\Debug\
 D:\ThucTap\CongTyGiao\AdminLTEinASPNETCoreMVC\AdminLTEASPNETEmployees\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Footer.cshtml.g.cs
 D:\ThucTap\CongTyGiao\AdminLTEinASPNETCoreMVC\AdminLTEASPNETEmployees\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_MainSidebar.cshtml.g.cs
 D:\ThucTap\CongTyGiao\AdminLTEinASPNETCoreMVC\AdminLTEASPNETEmployees\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Navbar.cshtml.g.cs
+D:\ThucTap\CongTyGiao\AdminLTEinASPNETCoreMVC\AdminLTEASPNETEmployees\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Modal.cshtml.g.cs
+D:\ThucTap\CongTyGiao\AdminLTEinASPNETCoreMVC\AdminLTEASPNETEmployees\obj\Debug\netcoreapp3.1\AdminLTEASPNETEmployees.csprojAssemblyReference.cache
+D:\ThucTap\CongTyGiao\AdminLTEinASPNETCoreMVC\AdminLTEASPNETEmployees\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_EmployeesList.cshtml.g.cs

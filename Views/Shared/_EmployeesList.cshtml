@@ -1,0 +1,88 @@
+﻿@using AdminLTEASPNETEmployees.Dtos
+@model IEnumerable<AdminLTEASPNETEmployees.Dtos.EmployeesReadDto>
+
+<div class="col-12">
+    <div class="card">
+        <div class="card-header">
+            <div class="card-tools">
+                <div class="input-group input-group-sm">
+                    <button class="btn btn-primary float-right" data-toggle="modal"
+                            data-target="#modal-lg-add">
+                        + Add new Employee
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>User Name</th>
+                        <th>Avatar</th>
+                        <th>Full Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Password</th>
+                        <th>Address</th>
+                        <th>Role</th>
+                        <th>Status</th>
+                        <th style="">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (EmployeesReadDto item in Model)
+                    {
+                        <tr>
+
+                            <td>@item.EmpId</td>
+                            <td>@item.EmpUsername</td>
+                            <td>
+                                <div class="d-flex justify-content-center">
+
+                                    <img src="~/images/@item.EmpAvatar" class="rounded-circle" alt="" width="50" height="50">
+                                </div>
+
+                            </td>
+                            <td>@item.EmpFullname</td>
+                            <td>@item.EmpEmail</td>
+                            <td>@item.EmpPhone</td>
+                            <td>@item.EmpPass</td>
+                            <td>@item.EmpAddress</td>
+
+                            <td>@item.EmpRole</td>
+                            <td>@item.EmpStatus</td>
+                            <td>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-warning"
+                                            data-toggle="modal"
+                                            data-target="#modal-lg"
+                                            data-id="@item.EmpId"
+                                            data-username="@item.EmpUsername"
+                                            data-fullname="@item.EmpFullname"
+                                            data-email="@item.EmpEmail"
+                                            data-password="@item.EmpPass"
+                                            data-phone="@item.EmpPhone"
+                                            data-address="@item.EmpAddress"
+                                            data-avatar="@item.EmpAvatar"
+                                            data-role="@item.EmpRole"
+                                            data-status="@item.EmpStatus">
+                                        Edit
+                                    </button>
+                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-sm" data-id="@item.EmpId">
+                                        Delete
+                                    </button>
+                                </div>
+
+                            </td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+</div>

@@ -1,0 +1,192 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+<div class="modal fade" id="modal-lg">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Edit </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="edit-e" enctype="multipart/form-data" action="@Url.Action("EditEmployee", "Home")" method="POST">
+                <div class="modal-body">
+                    <div class="card-body">
+
+                        <input type="text" hidden class="form-control" id="EmpId" name="EmpId">
+                        <div class="form-group">
+                            <label for="InputUsername">User Name</label>
+                            <input type="text" class="form-control" id="EmpUsername" name="EmpUsername" placeholder="Enter User Name...">
+                        </div>
+                        <div class="form-group">
+                            <label for="InputPassword">Password</label>
+                            <input type="password" class="form-control" id="EmpPass" name="EmpPass" placeholder="Password...">
+                        </div>
+                        <div class="form-group">
+                            <label for="InputFullname">Full Name</label>
+                            <input type="text" class="form-control" id="EmpFullname" name="EmpFullname" placeholder="Full Name...">
+                        </div>
+                        <div class="form-group">
+                            <label for="InputEmail">Email</label>
+                            <input type="email" class="form-control" id="EmpEmail" name="EmpEmail" placeholder="Email...">
+                        </div>
+                        <div class="form-group">
+                            <label for="InputPhone">Phone Number</label>
+                            <input type="text" class="form-control" id="EmpPhone" name="EmpPhone" placeholder="Phone Number...">
+                        </div>
+                        <div class="form-group">
+                            <label>Address</label>
+                            <textarea id="EmpAddress" name="EmpAddress" class="form-control" rows="2" placeholder="Enter Address..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="InputAvatar">Avatar</label>
+                            <div class="input-group">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="EmpAvatarStream" name="EmpAvatarStream">
+                                    <label class="custom-file-label" for="InputFile">Choose file</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <!-- text input -->
+                                <div class="form-group">
+                                    <label>Role</label>
+                                    <select id="EmpRole" name="EmpRole" class="custom-select">
+                                        <option>Admin</option>
+                                        <option>Normal User</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Status</label>
+                                    <select id="EmpStatus" name="EmpStatus" class="custom-select">
+                                        <option>Active</option>
+                                        <option>DeActive</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary " id="btn-edit">Save changes</button>
+                </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<div class="modal fade" id="modal-lg-add">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Add New</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="add-a" enctype="multipart/form-data" action="@Url.Action("AddEmployee", "Home")" method="POST">
+                <div class="modal-body">
+                    <div class="card-body">
+
+                        <input type="text" hidden class="form-control" id="EmpId" name="EmpId">
+                        <div class="form-group">
+                            <label for="InputUsername">User Name</label>
+                            <input type="text" class="form-control" name="EmpUsername" placeholder="Enter User Name...">
+                        </div>
+                        <div class="form-group">
+                            <label for="InputPassword">Password</label>
+                            <input type="password" class="form-control" name="EmpPass" placeholder="Password...">
+                        </div>
+                        <div class="form-group">
+                            <label for="InputFullname">Full Name</label>
+                            <input type="text" class="form-control"  name="EmpFullname" placeholder="Full Name...">
+                        </div>
+                        <div class="form-group">
+                            <label for="InputEmail">Email</label>
+                            <input type="email" class="form-control" name="EmpEmail" placeholder="Email...">
+                        </div>
+                        <div class="form-group">
+                            <label for="InputPhone">Phone Number</label>
+                            <input type="text" class="form-control" name="EmpPhone" placeholder="Phone Number...">
+                        </div>
+                        <div class="form-group">
+                            <label>Address</label>
+                            <textarea name="EmpAddress" class="form-control" rows="2" placeholder="Enter Address..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="InputAvatar">Avatar</label>
+                            <div class="input-group">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="EmpAvatarStream" name="EmpAvatarStream">
+                                    <label class="custom-file-label" for="InputFile">Choose file</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <!-- text input -->
+                                <div class="form-group">
+                                    <label>Role</label>
+                                    <select id="EmpRole" name="EmpRole" class="custom-select">
+                                        <option>Admin</option>
+                                        <option>Normal User</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Status</label>
+                                    <select id="EmpStatus" name="EmpStatus" class="custom-select">
+                                        <option>Active</option>
+                                        <option>DeActive</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" id="btn-add">Save</button>
+                </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+
+<div class="modal fade" id="modal-sm">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Delete</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <p>Are you sure to delete?</p>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id="delete-d" type="submit" class="btn btn-primary">Delete</button>
+            </div>
+
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->

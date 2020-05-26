@@ -8,11 +8,11 @@ namespace AdminLTEASPNETEmployees.Data
 {
     public interface IEmployeesRepo
     {
-        bool SaveChanges();
-
-
         IEnumerable<Employees> GetAllEmployees();
         Employees GetEmployeesById(int id);
-        void CreateEmployee(Employees emp);
+        void AddEmployee(Employees em);
+        void UpdateEmployee(Employees em);
+        void RemoveEmployeeById(int id);
+        void SaveChanges();
     }
 }

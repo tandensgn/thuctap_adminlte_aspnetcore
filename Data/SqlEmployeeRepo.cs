@@ -8,9 +8,9 @@ namespace AdminLTEASPNETEmployees.Data
 {
     public class SqlEmployeesRepo : IEmployeesRepo
     {
-        private readonly EmployeesContext _context;
+        private readonly EmployeesDBContext _context;
 
-        public SqlEmployeesRepo(EmployeesContext context)
+        public SqlEmployeesRepo(EmployeesDBContext context)
         {
             _context = context;
         }
@@ -36,9 +36,23 @@ namespace AdminLTEASPNETEmployees.Data
             return _context.Employees.FirstOrDefault(p => p.EmpId == id);
         }
 
-        public bool SaveChanges()
+        public void RemoveEmployeeById(int id)
         {
-            return (_context.SaveChanges() >= 0);
+            _context.Employees.Remove(_context.Employees.FirstOrDefault(p => p.EmpId == id));
+        }
+
+        public void UpdateEmployee(Employees em)
+        {
+            _context.Update(em);
+        }
+        public void AddEmployee(Employees em)
+        {
+            _context.Employees.Add(em);
+        }
+         
+        public void SaveChanges()
+        {
+            _context.SaveChanges();
         }
     }
 }

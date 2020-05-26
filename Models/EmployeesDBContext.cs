@@ -21,7 +21,7 @@ namespace AdminLTEASPNETEmployees.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=TANDENSGN\\SQLEXPRESS;Database=EmployeesDB;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Server=.\\SQLExpress;Database=EmployeesDB;Trusted_Connection=True;");
             }
         }
 
@@ -29,60 +29,53 @@ namespace AdminLTEASPNETEmployees.Models
         {
             modelBuilder.Entity<Employees>(entity =>
             {
+
+                entity.ToTable("EMPLOYEES");
+
                 entity.HasKey(e => e.EmpId)
-                    .HasName("PK__Employee__AFB3EC0DB0CF9599");
+                    .HasName("PK__Employee__AFB3EC0DB4E402AC");
 
                 entity.Property(e => e.EmpId).HasColumnName("empId");
 
                 entity.Property(e => e.EmpAddress)
-                    .IsRequired()
                     .HasColumnName("empAddress")
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
+                    .HasMaxLength(255);
 
                 entity.Property(e => e.EmpAvatar)
-                    .IsRequired()
                     .HasColumnName("empAvatar")
                     .HasMaxLength(255)
                     .IsUnicode(false);
 
                 entity.Property(e => e.EmpEmail)
-                    .IsRequired()
                     .HasColumnName("empEmail")
                     .HasMaxLength(255)
                     .IsUnicode(false);
 
                 entity.Property(e => e.EmpFullname)
-                    .IsRequired()
                     .HasColumnName("empFullname")
                     .HasMaxLength(255);
 
                 entity.Property(e => e.EmpPass)
-                    .IsRequired()
                     .HasColumnName("empPass")
                     .HasMaxLength(255)
                     .IsUnicode(false);
 
                 entity.Property(e => e.EmpPhone)
-                    .IsRequired()
                     .HasColumnName("empPhone")
                     .HasMaxLength(255)
                     .IsUnicode(false);
 
                 entity.Property(e => e.EmpRole)
-                    .IsRequired()
                     .HasColumnName("empRole")
                     .HasMaxLength(255)
                     .IsUnicode(false);
 
                 entity.Property(e => e.EmpStatus)
-                    .IsRequired()
                     .HasColumnName("empStatus")
                     .HasMaxLength(255)
                     .IsUnicode(false);
 
                 entity.Property(e => e.EmpUsername)
-                    .IsRequired()
                     .HasColumnName("empUsername")
                     .HasMaxLength(255);
             });

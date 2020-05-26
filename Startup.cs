@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AdminLTEASPNETEmployees.Data;
+using AdminLTEASPNETEmployees.Models;
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -25,7 +26,7 @@ namespace AdminLTEASPNETEmployees
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<EmployeesContext>(opt => opt.UseSqlServer
+            services.AddDbContext<EmployeesDBContext>(opt => opt.UseSqlServer
             (Configuration.GetConnectionString("EmployeesConnection")));
             services.AddControllersWithViews();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
