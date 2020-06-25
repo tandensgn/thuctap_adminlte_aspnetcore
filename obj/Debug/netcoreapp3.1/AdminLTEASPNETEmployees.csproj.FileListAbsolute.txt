@@ -138,8 +138,6 @@ D:\ThucTap\CongTyGiao\AdminLTEinASPNETCoreMVC\AdminLTEASPNETEmployees\bin\Debug\
 D:\ThucTap\CongTyGiao\AdminLTEinASPNETCoreMVC\AdminLTEASPNETEmployees\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
 D:\ThucTap\CongTyGiao\AdminLTEinASPNETCoreMVC\AdminLTEASPNETEmployees\bin\Debug\netcoreapp3.1\AutoMapper.dll
 D:\ThucTap\CongTyGiao\AdminLTEinASPNETCoreMVC\AdminLTEASPNETEmployees\bin\Debug\netcoreapp3.1\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
-D:\ThucTap\CongTyGiao\AdminLTEinASPNETCoreMVC\AdminLTEASPNETEmployees\obj\Debug\netcoreapp3.1\AdminLTEASPNETEmployees.csproj.CoreCompileInputs.cache
-D:\ThucTap\CongTyGiao\AdminLTEinASPNETCoreMVC\AdminLTEASPNETEmployees\obj\Debug\netcoreapp3.1\AdminLTEASPNETEmployees.MvcApplicationPartsAssemblyInfo.cache
 D:\ThucTap\CongTyGiao\AdminLTEinASPNETCoreMVC\AdminLTEASPNETEmployees\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_ControlSidebar.cshtml.g.cs
 D:\ThucTap\CongTyGiao\AdminLTEinASPNETCoreMVC\AdminLTEASPNETEmployees\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Footer.cshtml.g.cs
 D:\ThucTap\CongTyGiao\AdminLTEinASPNETCoreMVC\AdminLTEASPNETEmployees\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_MainSidebar.cshtml.g.cs
@@ -147,3 +145,13 @@ D:\ThucTap\CongTyGiao\AdminLTEinASPNETCoreMVC\AdminLTEASPNETEmployees\obj\Debug\
 D:\ThucTap\CongTyGiao\AdminLTEinASPNETCoreMVC\AdminLTEASPNETEmployees\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Modal.cshtml.g.cs
 D:\ThucTap\CongTyGiao\AdminLTEinASPNETCoreMVC\AdminLTEASPNETEmployees\obj\Debug\netcoreapp3.1\AdminLTEASPNETEmployees.csprojAssemblyReference.cache
 D:\ThucTap\CongTyGiao\AdminLTEinASPNETCoreMVC\AdminLTEASPNETEmployees\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_EmployeesList.cshtml.g.cs
+D:\ThucTap\CongTyGiao\AdminLTEinASPNETCoreMVC\AdminLTEASPNETEmployees\obj\Debug\netcoreapp3.1\Razor\Views\Login\Login.cshtml.g.cs
+D:\ThucTap\CongTyGiao\AdminLTEinASPNETCoreMVC\AdminLTEASPNETEmployees\bin\Debug\netcoreapp3.1\EO.Base.dll
+D:\ThucTap\CongTyGiao\AdminLTEinASPNETCoreMVC\AdminLTEASPNETEmployees\bin\Debug\netcoreapp3.1\EO.WebBrowser.dll
+D:\ThucTap\CongTyGiao\AdminLTEinASPNETCoreMVC\AdminLTEASPNETEmployees\bin\Debug\netcoreapp3.1\EO.WebEngine.dll
+D:\ThucTap\CongTyGiao\AdminLTEinASPNETCoreMVC\AdminLTEASPNETEmployees\obj\Debug\netcoreapp3.1\Razor\Views\Shared\UserAccessDenied.cshtml.g.cs
+D:\ThucTap\CongTyGiao\AdminLTEinASPNETCoreMVC\AdminLTEASPNETEmployees\obj\Debug\netcoreapp3.1\Razor\Views\User\User.cshtml.g.cs
+D:\ThucTap\CongTyGiao\AdminLTEinASPNETCoreMVC\AdminLTEASPNETEmployees\obj\Debug\netcoreapp3.1\Razor\Views\Home\Calendar.cshtml.g.cs
+D:\ThucTap\CongTyGiao\AdminLTEinASPNETCoreMVC\AdminLTEASPNETEmployees\bin\Debug\netcoreapp3.1\LazZiya.ImageResize.dll
+D:\ThucTap\CongTyGiao\AdminLTEinASPNETCoreMVC\AdminLTEASPNETEmployees\obj\Debug\netcoreapp3.1\AdminLTEASPNETEmployees.csproj.CoreCompileInputs.cache
+D:\ThucTap\CongTyGiao\AdminLTEinASPNETCoreMVC\AdminLTEASPNETEmployees\obj\Debug\netcoreapp3.1\AdminLTEASPNETEmployees.MvcApplicationPartsAssemblyInfo.cache

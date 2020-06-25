@@ -19,25 +19,24 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>User Name</th>
                         <th>Avatar</th>
                         <th>Full Name</th>
                         <th>Email</th>
                         <th>Phone</th>
-                        <th>Password</th>
                         <th>Address</th>
-                        <th>Role</th>
-                        <th>Status</th>
+                        <th>Password</th>
                         <th style="">Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (EmployeesReadDto item in Model)
                     {
+                        @*@if (item.RoleId == 1)
+                            item.RoleName = "Admin";
+                        else item.RoleName = "User";*@
                         <tr>
 
                             <td>@item.EmpId</td>
-                            <td>@item.EmpUsername</td>
                             <td>
                                 <div class="d-flex justify-content-center">
 
@@ -48,16 +47,20 @@
                             <td>@item.EmpFullname</td>
                             <td>@item.EmpEmail</td>
                             <td>@item.EmpPhone</td>
-                            <td>@item.EmpPass</td>
                             <td>@item.EmpAddress</td>
-
-                            <td>@item.EmpRole</td>
-                            <td>@item.EmpStatus</td>
+                            <td>
+                                <button type="button" class="btn btn-info"
+                                        data-toggle="modal"
+                                        data-target="#modal-password"
+                                        data-id="@item.EmpId">
+                                    Change
+                                </button>
+                            </td>
                             <td>
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-warning"
                                             data-toggle="modal"
-                                            data-target="#modal-lg"
+                                            data-target="#modal-edit"
                                             data-id="@item.EmpId"
                                             data-username="@item.EmpUsername"
                                             data-fullname="@item.EmpFullname"
@@ -66,11 +69,11 @@
                                             data-phone="@item.EmpPhone"
                                             data-address="@item.EmpAddress"
                                             data-avatar="@item.EmpAvatar"
-                                            data-role="@item.EmpRole"
+                                            data-role="@item.RoleId"
                                             data-status="@item.EmpStatus">
                                         Edit
                                     </button>
-                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-sm" data-id="@item.EmpId">
+                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-delete" data-id="@item.EmpId">
                                         Delete
                                     </button>
                                 </div>

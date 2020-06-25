@@ -1,4 +1,5 @@
-﻿using AdminLTEASPNETEmployees.Models;
+﻿using AdminLTEASPNETEmployees.Dtos;
+using AdminLTEASPNETEmployees.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,7 @@ namespace AdminLTEASPNETEmployees.Data
     {
         IEnumerable<Employees> GetAllEmployees();
         Employees GetEmployeesById(int id);
+        Employees GetEmployeesByEmail(LoginDTO user);
         // Add Employee to Database
         void AddEmployee(Employees em);
         // Edit Employee in Database
