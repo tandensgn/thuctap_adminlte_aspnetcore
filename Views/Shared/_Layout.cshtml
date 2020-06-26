@@ -112,6 +112,435 @@
             showConfirmButton: false,
             timer: 3000
         });
+        // bsCustomFileInput.init();
+        attachSort();
+        function attachSort() {
+            $("#example1").DataTable({
+                "responsive": true,
+                "autoWidth": false,
+            });
+        }
+    </script>
+    <script>
+        // Modal
+        $('#modal-edit').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget)
+            var modal = $(this)
+            //var
+            var EmpId = button.data('id')
+            var EmpUsername = button.data('username')
+            var EmpFullname = button.data('fullname')
+            var EmpEmail = button.data('email')
+            var EmpPass = button.data('password')
+            var EmpPhone = button.data('phone')
+            var EmpAddress = button.data('address')
+            var RoleName = button.data('rolename')
+            var EmpStatus = button.data('status')
+            var EmpAvatarStream = button.data('avatar')
+            console.log(EmpId)
+            console.log(EmpAvatarStream)
+            //modal.find
+            //modal.find('.modal-title').text('Edit')
+            modal.find('.modal-body #EmpId').val(EmpId)
+            modal.find('.modal-body #EmpUsername').val(EmpUsername)
+            modal.find('.modal-body #EmpFullname').val(EmpFullname)
+            modal.find('.modal-body #EmpEmail').val(EmpEmail)
+            modal.find('.modal-body #EmpPass').val(EmpPass)
+            modal.find('.modal-body #EmpPhone').val(EmpPhone)
+            modal.find('.modal-body #EmpAddress').val(EmpAddress)
+            modal.find('.modal-body #RoleName').val(RoleName)
+            modal.find('.modal-body #EmpStatus').val(EmpStatus)
+            //modal.find('.modal-body #EmpAvatarStream').val(EmpAvatarStream)
+        })
+        $('#modal-password').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget)
+            var modal = $(this)
+            //var
+            var EmpId = button.data('id')
+            console.log(EmpId);
+            var EmpPass = button.data('password')
+
+            //modal.find
+            modal.find('.modal-title').text('Password')
+            modal.find('.modal-body #EmpId').val(EmpId)
+            modal.find('.modal-body #EmpPass').val(EmpPass)
+        })
+        $('#modal-delete').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget)
+            var id = button.data('id')
+            console.log(id)
+            var modal = $(this)
+            modal.find('.modal-title').text('Delete')
+            modal.find('.modal-footer #delete-d').data('id', id)
+        })
+
+        // Ajax
+        $('#edit-e').submit(function (e) {
+            e.preventDefault();
+            $('#edit-e').validate({
+                rules: {
+                    EmpEmail: {
+                        required: true,
+                        email: true,
+                    },
+                    EmpPass: {
+                        required: true,
+                        minlength: 6
+                    },
+                    EmpUsername: {
+                        required: true,
+                        minlength: 6
+                    },
+                    EmpFullname: {
+                        required: true,
+                    },
+                    EmpPhone: {
+                        required: true,
+                        minlength: 10,
+                        maxlength: 10,
+                        digits: true
+                    },
+                    EmpAddress: {
+                        required: true
+                    },
+
+                    EmpRole: {
+                        required: true
+                    },
+                    EmpStatus: {
+                        required: true
+                    }
+
+                },
+                messages: {
+                    EmpEmail: {
+                        required: "Enter email",
+                        email: "Enter the appropriate email"
+                    },
+                    EmpUsername: {
+                        required: "Enter username",
+                        minlength: "Username must be longer than 6 characters"
+                    },
+
+                    EmpPass: {
+                        required: "Enter password",
+                        minlength: "Passwords must be at least 6 characters"
+                    },
+                    EmpPhone: {
+                        required: "Enter phone number",
+                        minlength: "Phone numbers must have 10 valid numbers",
+                        maxlength: "Phone numbers must have 10 valid numbers",
+                        digits: "Phone numbers must have 10 valid numbers"
+                    },
+                    EmpAddress: {
+                        required: "Enter address"
+                    },
+
+                    EmpStatus: {
+                        required: "Choose status"
+                    },
+                    RoleName: {
+                        required: "Choose role"
+                    },
+                    EmpFullname: {
+                        required: "Enter fullname"
+                    }
+
+                },
+                errorElement: 'span',
+                errorPlacement: function (error, element) {
+                    error.addClass('invalid-feedback');
+                    element.closest('.form-group').append(error);
+                },
+                highlight: function (element, errorClass, validClass) {
+                    $(element).addClass('is-invalid');
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    $(element).removeClass('is-invalid');
+                }
+
+            })
+            if ($('#edit-e').valid()) {
+                var data = new FormData(this);
+                console.log(data.EmpId);
+                $(".modal-footer #btn-edit").attr("disabled", true);
+
+                $(".modal-footer #btn-edit").prepend('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>')
+
+                $.ajax({
+                    url: this.action,
+                    type: this.method,
+                    data: data,
+                    cache: false,
+                    contentType: false,
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader("XSRF-TOKEN",
+                            $('input:hidden[name="__RequestVerificationToken"]').val());
+                    },
+                    processData: false,
+                    success: function (response) {
+
+                        $('#em-list').html(response);
+                        console.log(response);
+                        attachSort();
+                        $('.modal-footer #btn-edit').attr("disabled", false);
+                        $('.modal-footer #btn-edit .spinner-border').remove()
+                        hideModal();
+                    },
+                    error: function (xhr, error, status) {
+                        Toast.fire({
+                            icon: 'error',
+                            title: 'Save Failed !'
+                        })
+                    }
+                });
+            }
+
+        });
+        $('#password-p').submit(function (e) {
+            e.preventDefault();
+            $('#password-p').validate({
+                rules: {
+                    EmpPass: {
+                        required: true,
+                        minlength: 6
+                    },
+                    EmpCofPass: {
+                        required: true,
+                        minlength: 6
+                    }
+                },
+                messages: {
+                    EmpPass: {
+                        required: "Enter password",
+                        minlength: "Passwords must be at least 6 characters"
+                    },
+                    EmpCofPass: {
+                        required: "Enter password",
+                        minlength: "Passwords didn't match "
+                    }
+                },
+                errorElement: 'span',
+                errorPlacement: function (error, element) {
+                    error.addClass('invalid-feedback');
+                    element.closest('.form-group').append(error);
+                },
+                highlight: function (element, errorClass, validClass) {
+                    $(element).addClass('is-invalid');
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    $(element).removeClass('is-invalid');
+                }
+
+            })
+            if ($('#password-p').valid()) {
+                var data = new FormData(this);
+                console.log(data.EmpId);
+                $(".modal-footer #btn-password").attr("disabled", true);
+
+                $(".modal-footer #btn-password").prepend('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>')
+
+                $.ajax({
+                    url: this.action,
+                    type: this.method,
+                    data: data,
+                    cache: false,
+                    contentType: false,
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader("XSRF-TOKEN",
+                            $('input:hidden[name="__RequestVerificationToken"]').val());
+                    },
+                    processData: false,
+                    success: function (response) {
+
+                        $('#em-list').html(response);
+                        console.log(response);
+                        attachSort();
+                        $('.modal-footer #btn-password').attr("disabled", false);
+                        $('.modal-footer #btn-password .spinner-border').remove()
+                        hideModal();
+                    },
+                    error: function (xhr, error, status) {
+                        Toast.fire({
+                            icon: 'error',
+                            title: 'Save Failed !'
+                        })
+                    }
+                });
+            }
+
+        });
+        $('#add-a').submit(function (a) {
+            a.preventDefault();
+            $('#add-a').validate({
+                rules: {
+                    EmpEmail: {
+                        required: true,
+                        email: true,
+                    },
+                    EmpPass: {
+                        required: true,
+                        minlength: 6
+                    },
+                    EmpUsername: {
+                        required: true,
+                        minlength: 6
+                    },
+                    EmpFullname: {
+                        required: true,
+                    },
+                    EmpPhone: {
+                        required: true,
+                        minlength: 10,
+                        maxlength: 10,
+                        digits: true
+                    },
+                    EmpAddress: {
+                        required: true
+                    },
+                    //EmpRole: {
+                    //    required: true
+                    //},
+                    EmpStatus: {
+                        required: true
+                    },
+                    EmpAvatarStream: {
+                        required: true
+                    }
+
+                },
+                messages: {
+                    EmpEmail: {
+                        required: "Enter email",
+                        email: "Enter the appropriate email"
+                    },
+                    EmpUsername: {
+                        required: "Enter username",
+                        minlength: "Username must be longer than 9 characters"
+                    },
+
+                    EmpPass: {
+                        required: "Enter password",
+                        minlength: "Passwords must be at least 6 characters"
+                    },
+                    EmpPhone: {
+                        required: "Enter phone number",
+                        minlength: "Phone numbers must have 10 valid numbers",
+                        maxlength: "Phone numbers must have 10 valid numbers",
+                        digits: "Phone numbers must have 10 valid numbers"
+                    },
+                    EmpAddress: {
+                        required: "Enter address"
+                    },
+
+                    EmpStatus: {
+                        required: "Choose status"
+                    },
+                    //EmpRole: {
+                    //    required: "Choose role"
+                    //},
+                    EmpFullname: {
+                        required: "Enter fullname"
+                    },
+                    EmpAvatarStream: {
+                        required: "Choose avatar"
+                    }
+
+                },
+                errorElement: 'span',
+                errorPlacement: function (error, element) {
+                    error.addClass('invalid-feedback');
+                    element.closest('.form-group').append(error);
+                },
+                highlight: function (element, errorClass, validClass) {
+                    $(element).addClass('is-invalid');
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    $(element).removeClass('is-invalid');
+                }
+
+            });
+            if ($('#add-a').valid()) {
+                var data = new FormData(this);
+                console.log(data.EmpId);
+                $(".modal-footer #btn-add").attr("disabled", true);
+
+                $(".modal-footer #btn-add").prepend('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>')
+
+                $.ajax({
+                    url: this.action,
+                    type: this.method,
+                    data: data,
+                    cache: false,
+                    contentType: false,
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader("XSRF-TOKEN",
+                            $('input:hidden[name="__RequestVerificationToken"]').val());
+                    },
+                    processData: false,
+                    success: function (response) {
+
+                        $('#em-list').html(response);
+
+                        attachSort();
+                        $('.modal-footer #btn-add').attr("disabled", false);
+                        $('.modal-footer #btn-add .spinner-border').remove()
+                        hideModal();
+
+                        $(".modal-body input").val("");
+                        //Toast.fire({
+                        //    icon: 'success',
+                        //    title: 'Save Successfully ! '
+                        //})
+                    },
+                    error: function (xhr, error, status) {
+                        console.log(error, status);
+                    }
+                });
+            }
+
+        });
+        $('#delete-d').click(function (d) {
+
+            var id = $(this).data('id')
+            $(".modal-footer #delete-emp").attr("disabled", true);
+
+            $(".modal-footer #delete-emp").prepend('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>')
+
+            $.ajax({
+                url: "/Home/RemoveEmployee/" + id,
+                type: "POST",
+
+                cache: false,
+                contentType: false,
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader("XSRF-TOKEN",
+                        $('input:hidden[name="__RequestVerificationToken"]').val());
+                },
+                processData: false,
+                success: function (response) {
+
+                    $('#em-list').html(response);
+                    $(".modal-footer #delete-emp").attr("disabled", false);
+                    $('.modal-footer #delete-emp .spinner-border').remove()
+                    attachSort();
+                    hideModal();
+
+                    //Toast.fire({
+                    //    icon: 'success',
+                    //    title: 'Delete Successfully !'
+                    //})
+
+
+                },
+                error: function (xhr, error, status) {
+                    console.log(error, status);
+                }
+            });
+        });
+
+
+
     </script>
 </body>
 </html>

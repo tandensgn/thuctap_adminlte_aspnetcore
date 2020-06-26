@@ -1,6 +1,8 @@
 ﻿@using AdminLTEASPNETEmployees.Dtos
 @model IEnumerable<AdminLTEASPNETEmployees.Dtos.EmployeesReadDto>
-
+@{
+    int ID = 0;
+}
 <div class="col-12">
     <div class="card">
         <div class="card-header">
@@ -31,12 +33,13 @@
                 <tbody>
                     @foreach (EmployeesReadDto item in Model)
                     {
-                        @*@if (item.RoleId == 1)
-                            item.RoleName = "Admin";
-                        else item.RoleName = "User";*@
                         <tr>
 
-                            <td>@item.EmpId</td>
+                            @*<td>@item.EmpId</td>*@
+                            <td>
+                                @{ID = ID + 1;}
+                                @ID
+                            </td>
                             <td>
                                 <div class="d-flex justify-content-center">
 

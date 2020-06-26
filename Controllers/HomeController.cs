@@ -75,12 +75,21 @@ namespace AdminLTEASPNETEmployees.Controllers
             if (em.EmpAvatar != null)
             {
                 // Find and delete images file in server
+
+                //var uploads = Path.Combine(_hosting.WebRootPath, "images");
+                //var filePath = Path.Combine(uploads, em.EmpAvatar);
+                //System.IO.File.Delete(filePath);
+                //_repository.RemoveEmployeeById(id);
+                //_repository.SaveChanges();
+                //return EmployeesList();
+
                 var uploads = Path.Combine(_hosting.WebRootPath, "images");
                 var filePath = Path.Combine(uploads, em.EmpAvatar);
                 System.IO.File.Delete(filePath);
                 _repository.RemoveEmployeeById(id);
                 _repository.SaveChanges();
                 return EmployeesList();
+
             }
             else
             {
@@ -136,6 +145,7 @@ namespace AdminLTEASPNETEmployees.Controllers
             }
         }
 
+
         // Change password //
         [HttpPost]
         public IActionResult PasswordEmployee(PasswordModel pass)
@@ -170,6 +180,7 @@ namespace AdminLTEASPNETEmployees.Controllers
                 return Json(JsonConvert.SerializeObject(response));
             }
         }
+
 
         // Add Employee //
         public IActionResult AddEmployee(EmployeesCreateDto em)
