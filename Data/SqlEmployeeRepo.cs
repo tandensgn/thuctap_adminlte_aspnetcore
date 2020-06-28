@@ -56,6 +56,10 @@ namespace AdminLTEASPNETEmployees.Data
         {
             _context.Employees.Add(em);
         }
+        public Employees GetAdmin(int id)
+        {
+            return _context.Employees.FirstOrDefault(p => (p.EmpId == id) && (p.RoleId == 1));
+        }
         public void SaveChanges()
         {
             _context.SaveChanges();

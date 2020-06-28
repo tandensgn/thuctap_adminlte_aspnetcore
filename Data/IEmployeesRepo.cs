@@ -9,6 +9,7 @@ namespace AdminLTEASPNETEmployees.Data
 {
     public interface IEmployeesRepo
     {
+        Employees GetAdmin(int id);
         IEnumerable<Employees> GetAllEmployees();
         Employees GetEmployeesById(int id);
         Employees GetEmployeesByEmail(LoginDTO user);

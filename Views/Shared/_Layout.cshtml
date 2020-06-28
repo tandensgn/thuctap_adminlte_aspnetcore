@@ -83,7 +83,7 @@
     <script src="~/assets/dist/js/pages/dashboard.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="~/assets/dist/js/demo.js"></script>
-    @*@RenderSection("Scripts", required: false)*@
+    @RenderSection("scripts", required: false)
     <!-- bs-custom-file-input -->
     <script src="~/assets/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
     <script type="text/javascript">
@@ -297,8 +297,8 @@
             }
 
         });
-        $('#password-p').submit(function (e) {
-            e.preventDefault();
+        $('#password-p').submit(function (p) {
+            p.preventDefault();
             $('#password-p').validate({
                 rules: {
                     EmpPass: {
@@ -508,7 +508,7 @@
             $(".modal-footer #delete-emp").prepend('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>')
 
             $.ajax({
-                url: "/Home/RemoveEmployee/" + id,
+                url: "/Admin/RemoveEmployee/" + id,
                 type: "POST",
 
                 cache: false,
@@ -538,9 +538,6 @@
                 }
             });
         });
-
-
-
     </script>
 </body>
 </html>

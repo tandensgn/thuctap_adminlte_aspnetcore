@@ -79,7 +79,7 @@ namespace AdminLTEASPNETEmployees.Controllers
                         {
                             IsSuccess = true,
                             ErrorCode = "200",
-                            url = Url.Action("Index", "Home"),
+                            url = Url.Action("Index", "Admin"),
                             Message = "Login successfully!"
                         };
                         return Json(JsonConvert.SerializeObject(response));

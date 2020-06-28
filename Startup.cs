@@ -39,7 +39,7 @@ namespace AdminLTEASPNETEmployees
                  .AddCookie("CookieAuthentication", config =>  
                  {  
                      config.Cookie.Name = "AdminUserCookie"; // Name of cookie     
-                     config.LoginPath = "/Home/Index"; // Path for the redirect to user login page    
+                     config.LoginPath = "/Admin/Index"; // Path for the redirect to user login page    
                      config.AccessDeniedPath = "/Login/UserAccessDenied";  
                  });  
   
@@ -58,7 +58,7 @@ namespace AdminLTEASPNETEmployees
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/Admin/Error");
             }
             app.UseHttpsRedirection();  
             app.UseStaticFiles();

@@ -9,7 +9,6 @@ D:\ThucTap\CongTyGiao\AdminLTEinASPNETCoreMVC\AdminLTEASPNETEmployees\obj\Debug\
 D:\ThucTap\CongTyGiao\AdminLTEinASPNETCoreMVC\AdminLTEASPNETEmployees\obj\Debug\netcoreapp3.1\AdminLTEASPNETEmployees.TagHelpers.input.cache
 D:\ThucTap\CongTyGiao\AdminLTEinASPNETCoreMVC\AdminLTEASPNETEmployees\obj\Debug\netcoreapp3.1\AdminLTEASPNETEmployees.TagHelpers.output.cache
 D:\ThucTap\CongTyGiao\AdminLTEinASPNETCoreMVC\AdminLTEASPNETEmployees\obj\Debug\netcoreapp3.1\AdminLTEASPNETEmployees.RazorCoreGenerate.cache
-D:\ThucTap\CongTyGiao\AdminLTEinASPNETCoreMVC\AdminLTEASPNETEmployees\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
 D:\ThucTap\CongTyGiao\AdminLTEinASPNETCoreMVC\AdminLTEASPNETEmployees\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
 D:\ThucTap\CongTyGiao\AdminLTEinASPNETCoreMVC\AdminLTEASPNETEmployees\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
 D:\ThucTap\CongTyGiao\AdminLTEinASPNETCoreMVC\AdminLTEASPNETEmployees\obj\Debug\netcoreapp3.1\Razor\Views\_ViewImports.cshtml.g.cs
@@ -151,7 +150,9 @@ D:\ThucTap\CongTyGiao\AdminLTEinASPNETCoreMVC\AdminLTEASPNETEmployees\bin\Debug\
 D:\ThucTap\CongTyGiao\AdminLTEinASPNETCoreMVC\AdminLTEASPNETEmployees\bin\Debug\netcoreapp3.1\EO.WebEngine.dll
 D:\ThucTap\CongTyGiao\AdminLTEinASPNETCoreMVC\AdminLTEASPNETEmployees\obj\Debug\netcoreapp3.1\Razor\Views\Shared\UserAccessDenied.cshtml.g.cs
 D:\ThucTap\CongTyGiao\AdminLTEinASPNETCoreMVC\AdminLTEASPNETEmployees\obj\Debug\netcoreapp3.1\Razor\Views\User\User.cshtml.g.cs
-D:\ThucTap\CongTyGiao\AdminLTEinASPNETCoreMVC\AdminLTEASPNETEmployees\obj\Debug\netcoreapp3.1\Razor\Views\Home\Calendar.cshtml.g.cs
 D:\ThucTap\CongTyGiao\AdminLTEinASPNETCoreMVC\AdminLTEASPNETEmployees\bin\Debug\netcoreapp3.1\LazZiya.ImageResize.dll
 D:\ThucTap\CongTyGiao\AdminLTEinASPNETCoreMVC\AdminLTEASPNETEmployees\obj\Debug\netcoreapp3.1\AdminLTEASPNETEmployees.csproj.CoreCompileInputs.cache
 D:\ThucTap\CongTyGiao\AdminLTEinASPNETCoreMVC\AdminLTEASPNETEmployees\obj\Debug\netcoreapp3.1\AdminLTEASPNETEmployees.MvcApplicationPartsAssemblyInfo.cache
+D:\ThucTap\CongTyGiao\AdminLTEinASPNETCoreMVC\AdminLTEASPNETEmployees\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Index.cshtml.g.cs
+D:\ThucTap\CongTyGiao\AdminLTEinASPNETCoreMVC\AdminLTEASPNETEmployees\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Calendar.cshtml.g.cs
+D:\ThucTap\CongTyGiao\AdminLTEinASPNETCoreMVC\AdminLTEASPNETEmployees\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Profile.cshtml.g.cs

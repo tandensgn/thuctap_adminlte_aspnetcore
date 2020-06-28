@@ -1,0 +1,380 @@
+﻿
+@{
+    ViewData["Title"] = "Profile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model AdminLTEASPNETEmployees.Dtos.EmployeesReadDto
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Profile</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">User Profile</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3">
+
+                    <!-- Profile Image -->
+                    <div class="card card-primary card-outline">
+                        <div class="card-body box-profile">
+                            <div class="text-center">
+                                <img class="profile-user-img img-fluid img-circle" src="~/images/TanDen_Logo_a105.jpg" style="height:100px;width:100px"
+                                     alt="User profile picture">
+                            </div>
+
+                            <h3 class="profile-username text-center">@Model.EmpFullname</h3>
+
+                            <p class="text-muted text-center">Admin</p>
+
+
+
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                    <!-- About Me Box -->
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+                <div class="col-md-9">
+                    <div class="card">
+                        <div class="card-header p-2">
+                            <ul class="nav nav-pills">
+                                <li class="nav-item"><a class="active nav-link" href="#settings" data-toggle="tab">Information</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#password" data-toggle="tab">Password</a></li>
+                            </ul>
+                        </div><!-- /.card-header -->
+                        <div class="card-body">
+                            <div class="tab-content">
+
+
+                                <div class=" active tab-pane" id="settings">
+                                    <form class="form-horizontal" id="edit-admin" enctype="multipart/form-data" action="@Url.Action("EditAdmin","Admin")" method="post">
+                                        <div class="form-group row">
+                                            <label for="inputName" class="col-sm-2 col-form-label">Full Name:</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="FullName" name="FullName" value="@Model.EmpFullname">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="inputName" class="col-sm-2 col-form-label">User Name:</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="UserName" name="UserName" value="@Model.EmpUsername">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="inputEmail" class="col-sm-2 col-form-label">Email:</label>
+                                            <div class="col-sm-10">
+                                                <input type="email" class="form-control" id="Email" name="Email" value="@Model.EmpEmail">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="inputExperience" class="col-sm-2 col-form-label">Phone:</label>
+                                            <div class="col-sm-10">
+                                                <input type="number" class="form-control" id="Phone" name="Phone" value="@Model.EmpPhone">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="inputSkills" class="col-sm-2 col-form-label">Address:</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="Address" name="Address" value="@Model.EmpAddress">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label" for="exampleInputFile">Avatar:</label>
+                                            <div class="col-sm-10">
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input" name="AvatarStream">
+                                                    <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="offset-sm-2 col-sm-10">
+                                                <button type="submit" id="btn-edit" class="btn btn-danger">Save Changes</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <div class="tab-pane" id="password">
+                                    <form class="form-horizontal" id="edit-adminpass" enctype="multipart/form-data" action="@Url.Action("PasswordEmployee","Admin")" method="post">
+                                        <div class="form-group row">
+                                            <label for="inputName" class="col-sm-2 col-form-label">Current password</label>
+                                            <div class="col-sm-10">
+                                                <input type="password" class="form-control" id="oldpass" name="currentPassword" placeholder="Current password ">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="inputEmail" class="col-sm-2 col-form-label">New Password</label>
+                                            <div class="col-sm-10">
+                                                <input type="password" class="form-control" id="newpass" name="newPassword" placeholder="Password">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="inputEmail" class="col-sm-2 col-form-label">Confirm password</label>
+                                            <div class="col-sm-10">
+                                                <input type="password" class="form-control" id="confirmpass" name="confirmPassword" placeholder="Confirm password">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <div class="offset-sm-2 col-sm-10">
+                                                <button type="submit" id="btn-pass" class="btn btn-danger">Save Changes</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <!-- /.tab-pane -->
+                            </div>
+                            <!-- /.tab-content -->
+                        </div><!-- /.card-body -->
+                    </div>
+                    <!-- /.nav-tabs-custom -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+
+<div class="modal fade" id="modal-admin">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Thông báo</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Chỉnh xửa thông tin thành công</p>
+            </div>
+            <div class="modal-footer justify-content-end">
+
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+@section scripts
+{
+    <script>
+        //Datemask dd/mm/yyyy
+        $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
+        $('[data-mask]').inputmask()
+
+        $('#edit-admin').submit(function (e) {
+            e.preventDefault();
+
+            $('#edit-admin').validate({
+                rules: {
+                    
+                    FullName: {
+                        required: true,
+                    },
+                    UserName: {
+                        required: true,
+                        minlength: 6
+                    },
+                    Email: {
+                        required: true,
+                        email: true,
+                    },
+                    Phone: {
+                        required: true,
+                        minlength: 10,
+                        maxlength: 10,
+                        digits: true
+                    },
+                    Address: {
+                        required: true
+                    },
+
+
+
+                },
+                messages: {
+                    FullName: {
+                        required: "Nhập họ và tên đầy đủ"
+                    },
+                    UserName: {
+                        required: "Nhập tên đăng nhập",
+                        minlength: "Tên đăng nhập phải dài hơn 6 ký tự"
+                    },
+                    Email: {
+                        required: "Nhập Email",
+                        email: "Nhập email phù hợp"
+                    },
+                    Phone: {
+                        required: "Nhập số điện thoại",
+                        minlength: "Số điện thoại phải có 10 số hợp lệ",
+                        maxlength: "Số điện thoại phải có 10 số hợp lệ",
+                        digits: "Số điện thoại phải có 10 số hợp lệ"
+                    },
+                    Address: {
+                        required: "Nhập địa chỉ"
+                    },
+                },
+                errorElement: 'span',
+                errorPlacement: function (error, element) {
+                    error.addClass('invalid-feedback');
+                    element.closest('.form-group').append(error);
+                }
+
+
+            });
+            if ($('#edit-admin').valid()) {
+                var data = new FormData(this);
+                $(".modal-footer #btn-edit").attr("disabled", true);
+
+                $(".modal-footer #btn-edit").prepend('<span class="spinner-border spinner-border-sm mr-1" role="status" aria-hidden="true"></span>')
+
+                $.ajax({
+                    url: this.action,
+                    type: this.method,
+                    data: data,
+                    cache: false,
+                    contentType: false,
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader("XSRF-TOKEN",
+                            $('input:hidden[name="__RequestVerificationToken"]').val());
+                    },
+                    processData: false,
+                    success: function (response) {
+                        $(".modal-footer #btn-edit").attr("disabled", false);
+                        $('.modal-footer #btn-edit .spinner-border').remove()
+                        var a = JSON.parse(response);
+                        if (a.IsSuccess == true) {
+                            $("#edit-adminpass input").val("");
+                            defaultModal($("#modal-admin"), a.Message);
+                            $("#modal-admin").modal('show');
+                        } else {
+                            defaultModal($("#modal-admin"), a.Message);
+                            $("#modal-admin").modal('show');
+                        }
+
+                    },
+                    error: function (xhr, error, status) {
+                        //console.log(error, status);
+                        Toast.fire({
+                            icon: 'error',
+                            title: 'Chỉnh sửa thông tin không thành công!!'
+                        })
+                    }
+                });
+            }
+
+
+        });
+        $('#edit-adminpass').submit(function (e) {
+            e.preventDefault();
+            $('#edit-adminpass').validate({
+                rules: {
+
+                    oldpass: {
+                        required: true,
+                        minlength: 6
+                    },
+                    newpass: {
+                        required: true,
+                        minlength: 6
+                    },
+                    confirmpass: {
+                        required: true,
+                        minlength: 6,
+                        equalTo: "#newpass"
+                    },
+
+
+
+
+                },
+                messages: {
+
+                    oldpass: {
+                        required: "Nhập mật khẩu",
+                        minlength: "Mật khẩu phải có ít nhất 6 ký tự"
+                    },
+                    newpass: {
+                        required: "Nhập mật khẩu",
+                        minlength: "Mật khẩu phải có ít nhất 6 ký tự"
+                    },
+                    confirmpass: {
+                        equalTo: "Xác nhận mật khẩu không đúng"
+                    },
+                },
+                errorElement: 'span',
+                errorPlacement: function (error, element) {
+                    error.addClass('invalid-feedback');
+                    element.closest('.form-group').append(error);
+                }
+
+
+            });
+            if ($('#edit-adminpass').valid()) {
+                var data = new FormData(this);
+                $(".modal-footer #btn-pass").attr("disabled", true);
+
+                $(".modal-footer #btn-pass").prepend('<span class="spinner-border spinner-border-sm mr-1" role="status" aria-hidden="true"></span>')
+
+                $.ajax({
+                    url: this.action,
+                    type: this.method,
+                    data: data,
+                    cache: false,
+                    contentType: false,
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader("XSRF-TOKEN",
+                            $('input:hidden[name="__RequestVerificationToken"]').val());
+                    },
+                    processData: false,
+                    success: function (response) {
+                        $(".modal-footer #btn-pass").attr("disabled", false);
+                        $('.modal-footer #btn-pass .spinner-border').remove()
+                        var a = JSON.parse(response);
+                        if (a.IsSuccess == true) {
+                            $("#edit-adminpass input").val("");
+
+                            defaultModal($("#modal-admin"), a.Message);
+                            $("#modal-admin").modal('show');
+                        } else {
+
+                        }
+
+                    },
+                    error: function (xhr, error, status) {
+                        //console.log(error, status);
+                        Toast.fire({
+                            icon: 'error',
+                            title: 'Chỉnh sửa thông tin không thành công!!'
+                        })
+                    }
+                });
+            }
+
+
+        });
+    </script>
+}
+

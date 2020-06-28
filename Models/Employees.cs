@@ -16,7 +16,6 @@ namespace AdminLTEASPNETEmployees.Models
         public int RoleId { get; set; }
         public string EmpStatus { get; set; }
         public string EmpSalt { get; set; }
-
         public virtual EmpRole Role { get; set; }
     }
 }

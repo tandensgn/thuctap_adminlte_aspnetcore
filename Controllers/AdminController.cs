@@ -19,11 +19,12 @@ using AdminLTEASPNETEmployees.HttpResponse;
 using Newtonsoft.Json;
 using LazZiya.ImageResize;
 using System.Drawing;
+using AdminLTEASPNETEmployees.CustomHandler;
 
 namespace AdminLTEASPNETEmployees.Controllers
 {
     [Authorize(Roles = "1")]
-    public class HomeController : Controller
+    public class AdminController : Controller
     {
         // Database //
         EmployeesDBContext db = new EmployeesDBContext();
@@ -42,7 +43,7 @@ namespace AdminLTEASPNETEmployees.Controllers
         }
 
         // Repository, Mapper, hosting //
-        public HomeController(IEmployeesRepo repository, IMapper mapper, IWebHostEnvironment hosting)
+        public AdminController(IEmployeesRepo repository, IMapper mapper, IWebHostEnvironment hosting)
         {
             _repository = repository;
             _mapper = mapper;
@@ -56,6 +57,63 @@ namespace AdminLTEASPNETEmployees.Controllers
             var employeeDTO = _mapper.Map<IEnumerable<EmployeesReadDto>>(employeeItems);
             return View(employeeDTO);
         }
+        // Profile //
+        public IActionResult Profile()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            Employees em = _repository.GetEmployeesById(Int32.Parse(userId));
+            EmployeesReadDto emDTO = _mapper.Map<EmployeesReadDto>(em);
+            return View(emDTO);
+        }
+        // Edit Admin //
+        [HttpPost]
+        public IActionResult EditAdmin(EmployeesCreateDto em)
+        {
+            var userId = Int16.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+            if (em.EmpAvatarStream != null)
+            {
+
+                var uniqueFileName = FileManager.GetUniqueFileName(em.EmpAvatarStream.FileName);
+                var uploads = Path.Combine(_hosting.WebRootPath, "images");
+                var filePath = Path.Combine(uploads, uniqueFileName);
+                em.EmpAvatarStream.CopyTo(new FileStream(filePath, FileMode.Create));
+
+                //to do : Save uniqueFileName  to your db table   
+                Employees employee = _mapper.Map<Employees>(em);
+
+                employee.EmpAvatar = uniqueFileName;
+                employee.EmpPhone = em.EmpPhone;
+                employee.EmpStatus = "Active";
+                employee.EmpAddress = em.EmpAddress;
+                employee.EmpEmail = em.EmpEmail;
+                employee.EmpFullname = em.EmpFullname;
+                employee.RoleId = 1;
+                employee.EmpId = userId;
+
+                _repository.UpdateEmployee(employee);
+                _repository.SaveChanges();
+            }
+            else
+            {
+                Employees employee = _repository.GetAdmin(userId);
+                employee.EmpPhone = em.EmpPhone;
+                employee.EmpStatus = "Active";
+                employee.EmpAddress = em.EmpAddress;
+                employee.EmpEmail = em.EmpEmail;
+                employee.EmpFullname = em.EmpFullname;
+                employee.RoleId = 1;
+
+                _repository.UpdateEmployee(employee);
+                _repository.SaveChanges();
+            }
+            Response response = new Response()
+            {
+                IsSuccess = true,
+
+                Message = "Change information successfully!"
+            };
+            return Json(JsonConvert.SerializeObject(response));
+        }
 
         // Showlist All Employees //
         public IActionResult EmployeesList()
@@ -65,6 +123,28 @@ namespace AdminLTEASPNETEmployees.Controllers
             return PartialView("_EmployeesList", employeeDto);
         }
 
+        // Add Employee //
+        public IActionResult AddEmployee(EmployeesCreateDto em)
+        {
+            Employees employee = _mapper.Map<Employees>(em);
+            if (em.EmpAvatarStream != null)
+            {
+                var uniqueFileName = GetUniqueFileName(em.EmpAvatarStream.FileName);
+                var uploads = Path.Combine(_hosting.WebRootPath, "images");
+                var filePath = Path.Combine(uploads, uniqueFileName);
+                em.EmpAvatarStream.CopyTo(new FileStream(filePath, FileMode.Create));
+                employee.EmpAvatar = uniqueFileName;
+            }
+            //to do : Save uniqueFileName  to your db table
+            string salt = Encrypt.GenerateSaltForPassword();
+            string hashPass = Encrypt.EncryptPassword(employee.EmpPass, salt).ToString();
+            employee.EmpPass = hashPass;
+            employee.EmpSalt = salt.ToString();
+            employee.RoleId = 2;
+            _repository.AddEmployee(employee);
+            _repository.SaveChanges();
+            return EmployeesList();
+        }
 
         // Remove Employee //
         [HttpPost]
@@ -100,117 +180,49 @@ namespace AdminLTEASPNETEmployees.Controllers
             }
         }
 
-
         // Edit Employees //
         [HttpPost]
         public IActionResult EditEmployee(EmployeesCreateDto em)
         {
-
+            Employees employee = _repository.GetEmployeesById(em.EmpId);
             if (em.EmpAvatarStream != null)
             {
-                // Rename images file, upload file and copy to server
-                var uniqueFileName = GetUniqueFileName(em.EmpAvatarStream.FileName);
+                var uniqueFileName = FileManager.GetUniqueFileName(em.EmpAvatarStream.FileName);
                 var uploads = Path.Combine(_hosting.WebRootPath, "images");
                 var filePath = Path.Combine(uploads, uniqueFileName);
                 em.EmpAvatarStream.CopyTo(new FileStream(filePath, FileMode.Create));
 
-                // to do : Save uniqueFileName  to your db table   
-                Employees employees = _mapper.Map<Employees>(em);
-                employees.EmpAvatar = uniqueFileName;
-                string salt = Encrypt.GenerateSaltForPassword();
-                string hashPass = Encrypt.EncryptPassword(employees.EmpPass, salt).ToString();
-                employees.EmpPass = hashPass;
-                employees.EmpSalt = salt.ToString();
-                employees.RoleId = 2;
-                _repository.UpdateEmployee(employees);
-                _repository.SaveChanges();
-                return EmployeesList();
+                //to do : Save uniqueFileName  to your db table   
 
+                employee.EmpAvatar = uniqueFileName;
             }
-            else
-            {
-                // Change edit infor and keep unchange ones
-                Employees employees = _repository.GetEmployeesById(em.EmpId);
-                employees.EmpUsername = em.EmpUsername;
-                employees.EmpPass = em.EmpPass;
-                employees.EmpFullname = em.EmpFullname;
-                employees.EmpPhone = em.EmpPhone;
-                employees.EmpAddress = em.EmpAddress;
-                employees.RoleId = em.RoleId;
-                employees.EmpStatus = em.EmpStatus;
-                employees.EmpSalt = em.EmpSalt;
-                _repository.UpdateEmployee(employees);
-                _repository.SaveChanges();
-                return EmployeesList();
-            }
+            employee.EmpUsername = em.EmpUsername;
+            employee.EmpFullname = em.EmpFullname;
+            employee.EmpEmail = em.EmpEmail;
+            employee.EmpPhone = em.EmpPhone;
+            employee.EmpAddress = em.EmpAddress;
+            employee.EmpStatus = "Active";
+            employee.RoleId = 2;
+
+            _repository.UpdateEmployee(employee);
+            _repository.SaveChanges();
+            return EmployeesList();
         }
-
 
         // Change password //
         [HttpPost]
-        public IActionResult PasswordEmployee(PasswordModel pass)
+        public IActionResult PasswordEmployee(EmployeesCreateDto em)
         {
+            Employees employee = _repository.GetEmployeesById(em.EmpId);
 
-            Employees emp = _repository.GetEmployeesById(pass.passId);
+            string salt = Encrypt.GenerateSaltForPassword();
+            string hashPass = Encrypt.EncryptPassword(em.EmpPass, salt).ToString();
+            employee.EmpPass = hashPass;
+            employee.EmpSalt = salt.ToString();
 
-            if (pass.newPassword == pass.confirmPassword)
-            {
-                string salt = Encrypt.GenerateSaltForPassword();
-                string newHashPassword = Encrypt.EncryptPassword(pass.newPassword, salt);
-                emp.EmpPass = newHashPassword;
-                emp.EmpSalt = salt;
-                _repository.UpdateEmployee(emp);
-                _repository.SaveChanges();
-                Response response = new Response()
-                {
-                    IsSuccess = true,
-
-                    Message = "Change password successfully!"
-                };
-                return Json(JsonConvert.SerializeObject(response));
-            }
-            else
-            {
-                Response response = new Response()
-                {
-                    IsSuccess = false,
-                    ErrorCode = "401",
-                    Message = "Incorrect password!"
-                };
-                return Json(JsonConvert.SerializeObject(response));
-            }
-        }
-
-
-        // Add Employee //
-        public IActionResult AddEmployee(EmployeesCreateDto em)
-        {
-
-            if (em.EmpAvatarStream != null)
-            {
-                var uniqueFileName = GetUniqueFileName(em.EmpAvatarStream.FileName);
-                var uploads = Path.Combine(_hosting.WebRootPath, "images");
-                var filePath = Path.Combine(uploads, uniqueFileName);
-                em.EmpAvatarStream.CopyTo(new FileStream(filePath, FileMode.Create));
-
-
-                //to do : Save uniqueFileName  to your db table   
-                Employees employees = _mapper.Map<Employees>(em);
-                employees.EmpAvatar = uniqueFileName;
-                string salt = Encrypt.GenerateSaltForPassword();
-                string hashPass = Encrypt.EncryptPassword(employees.EmpPass, salt).ToString();
-                employees.EmpPass = hashPass;
-                employees.EmpSalt = salt.ToString();
-                employees.RoleId = 2;
-                _repository.AddEmployee(employees);
-                _repository.SaveChanges();
-                return EmployeesList();
-
-            }
-            else
-            {
-                return EmployeesList();
-            }
+            _repository.UpdateEmployee(employee);
+            _repository.SaveChanges();
+            return EmployeesList();
         }
 
 
