@@ -141,6 +141,7 @@ namespace AdminLTEASPNETEmployees.Controllers
             employee.EmpPass = hashPass;
             employee.EmpSalt = salt.ToString();
             employee.RoleId = 2;
+            employee.EmpStatus = "Active";
             _repository.AddEmployee(employee);
             _repository.SaveChanges();
             return EmployeesList();
@@ -150,34 +151,32 @@ namespace AdminLTEASPNETEmployees.Controllers
         [HttpPost]
         public IActionResult RemoveEmployee(int id)
         {
+            Employees employee = _repository.GetEmployeesById(id);
+            //if (employee.EmpAvatar != null)
+            //{
 
-            Employees em = _repository.GetEmployeesById(id);
-            if (em.EmpAvatar != null)
-            {
-                // Find and delete images file in server
+            //    var uploads = Path.Combine(_hosting.WebRootPath, "images");
+            //    var filePath = Path.Combine(uploads, employee.EmpAvatar);
+            //    System.IO.File.Delete(filePath);
+            //    _repository.RemoveEmployeeById(id);
+            //    _repository.SaveChanges();
+            //    return EmployeesList();
 
-                //var uploads = Path.Combine(_hosting.WebRootPath, "images");
-                //var filePath = Path.Combine(uploads, em.EmpAvatar);
-                //System.IO.File.Delete(filePath);
-                //_repository.RemoveEmployeeById(id);
-                //_repository.SaveChanges();
-                //return EmployeesList();
+            //}
+            //else
+            //{
+            //    // Remove items don't have image
+            //    _repository.RemoveEmployeeById(id);
+            //    _repository.SaveChanges();
+            //    return EmployeesList();
+            //}
 
-                var uploads = Path.Combine(_hosting.WebRootPath, "images");
-                var filePath = Path.Combine(uploads, em.EmpAvatar);
-                System.IO.File.Delete(filePath);
-                _repository.RemoveEmployeeById(id);
-                _repository.SaveChanges();
-                return EmployeesList();
+            employee.EmpStatus = "DeActive";
 
-            }
-            else
-            {
-                // Remove items don't have image
-                _repository.RemoveEmployeeById(id);
-                _repository.SaveChanges();
-                return EmployeesList();
-            }
+            _repository.UpdateEmployee(employee);
+            _repository.SaveChanges();
+            return EmployeesList();
+
         }
 
         // Edit Employees //

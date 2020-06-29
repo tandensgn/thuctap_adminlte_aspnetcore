@@ -29,7 +29,7 @@ namespace AdminLTEASPNETEmployees.Data
 
         public IEnumerable<Employees> GetAllEmployees()
         {
-            return _context.Employees.Where(u => (u.RoleId == 2)).ToList();
+            return _context.Employees.Where(u => (u.RoleId == 2) && (u.EmpStatus == "Active")).ToList();
         }
 
 

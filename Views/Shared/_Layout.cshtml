@@ -164,6 +164,24 @@
             modal.find('.modal-title').text('Password')
             modal.find('.modal-body #EmpId').val(EmpId)
             modal.find('.modal-body #EmpPass').val(EmpPass)
+
+            $("#EmpCofPass").keyup(validatePass);
+            function validatePass() {
+                var EmpPass = $("#EmpPass").val();
+                var EmpCofPass = $("#EmpCofPass").val();
+
+
+
+                if (EmpPass == EmpCofPass) {
+                    $("#EmpCofPass").messages("Match");
+                }
+                else {
+                    $("#EmpCofPass").messages("Unmatch");
+                }
+
+            }
+
+
         })
         $('#modal-delete').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget)
@@ -316,8 +334,8 @@
                         minlength: "Passwords must be at least 6 characters"
                     },
                     EmpCofPass: {
-                        required: "Enter password",
-                        minlength: "Passwords didn't match "
+                        required: "Enter confirm password",
+                        
                     }
                 },
                 errorElement: 'span',
@@ -333,6 +351,7 @@
                 }
 
             })
+
             if ($('#password-p').valid()) {
                 var data = new FormData(this);
                 console.log(data.EmpId);
@@ -538,6 +557,10 @@
                 }
             });
         });
+
+        
+        
+
     </script>
 </body>
 </html>
