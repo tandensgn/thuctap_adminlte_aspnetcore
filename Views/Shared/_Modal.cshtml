@@ -101,8 +101,6 @@
 
 
 
-
-
 <!-- ADD MODAL -->
 <div class="modal fade" id="modal-lg-add">
     <div class="modal-dialog modal-lg">
@@ -151,7 +149,7 @@
                                     <div class="input-group">
                                         <div class="custom-file">
                                             <input type="file" class="custom-file-input" id="EmpAvatarStream" name="EmpAvatarStream">
-                                            <label class="custom-file-label" for="InputFile">Choose file</label>
+                                            <label id="" name="" class="custom-file-label" for="InputFile" style=" color: darkgray;">Choose file</label>
                                         </div>
                                     </div>
                                 </div>
@@ -200,8 +198,6 @@
     </div>
     <!-- /.modal-dialog -->
 </div>
-
-
 
 
 
@@ -257,6 +253,9 @@
     <!-- /.modal-dialog -->
 </div>
 <!-- /.modal -->
+
+
+
 <!-- PASSWORD MODAL -->
 <div class="modal fade" id="modal-password">
     <div class="modal-dialog ">
@@ -271,17 +270,19 @@
                 <div class="modal-body">
                     <input type="text" hidden class="form-control" id="EmpId" name="EmpId">
                     <div class="form-group">
-                        <label for="inputEmail" class=" col-form-label">New password</label>
+                        <label for="EmpPass" class=" col-form-label">New password</label>
                         <input type="password" class="form-control" id="EmpPass" name="EmpPass" placeholder="Password">
 
                     </div>
                     <div class="form-group">
-                        <label for="inputEmail" class=" col-form-label">Confirm password</label>
+                        <label for="EmpCofPass" class=" col-form-label">Confirm password</label>
                         <input type="password" class="form-control" id="EmpCofPass" name="EmpCofPass" placeholder="Confirm password">
+
                     </div>
+                    <p id="confirm-pass" style="display:none;color:red"></p>
                 </div>
                 <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" id="close-em" class="btn btn-default" data-dismiss="modal">Close</button>
                     <button id="btn-password" type="submit" class="btn btn-primary">
                         Save changes
                     </button>
@@ -290,5 +291,27 @@
             </form>
         </div>
     </div>
+</div>
+<!-- POPUP MSG PASSWORD SUCCESS -->
+<div class="modal fade" id="modal-default">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Đổi mật khẩu</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Chỉnh xửa thông tin thành công</p>
+            </div>
+            <div class="modal-footer justify-content-end">
+
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
 </div>
 
