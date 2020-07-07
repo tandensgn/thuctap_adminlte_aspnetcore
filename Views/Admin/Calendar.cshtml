@@ -6,6 +6,21 @@
 }
 
 @*@model ThucTap_Core_MVC.Dtos.DaysOffDTO*@
+@{
+
+    var user = ViewBag.User;
+
+}
+
+@section link
+{
+    <!-- fullCalendar -->
+    <link rel="stylesheet" href="~/assets/plugins/fullcalendar/main.min.css">
+    <link rel="stylesheet" href="~/assets/plugins/fullcalendar-daygrid/main.min.css">
+    <link rel="stylesheet" href="~/assets/plugins/fullcalendar-timegrid/main.min.css">
+    <link rel="stylesheet" href="~/assets/plugins/fullcalendar-bootstrap/main.min.css">
+}
+
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -34,15 +49,22 @@
                     <div class="sticky-top mb-3">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">Chú thích</h4>
+                                <h4 class="card-title">Draggable Events</h4>
                             </div>
                             <div class="card-body">
                                 <!-- the events -->
                                 <div id="external-events">
-
-                                    <div class="external-event bg-primary">Nghỉ có phép</div>
-                                    <div class="external-event bg-danger">Nghỉ không phép</div>
-
+                                    <div class="external-event bg-success">Lunch</div>
+                                    <div class="external-event bg-warning">Go home</div>
+                                    <div class="external-event bg-info">Do homework</div>
+                                    <div class="external-event bg-primary">Work on UI design</div>
+                                    <div class="external-event bg-danger">Sleep tight</div>
+                                    <div class="checkbox">
+                                        <label for="drop-remove">
+                                            <input type="checkbox" id="drop-remove">
+                                            remove after drop
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
                             <!-- /.card-body -->
@@ -50,40 +72,30 @@
                         <!-- /.card -->
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">Thống kê ngày nghỉ</h4>
+                                <h3 class="card-title">Create Event</h3>
                             </div>
                             <div class="card-body">
-                                <!-- the events -->
-                                <ul class="list-group list-group-unbordered mb-3">
+                                <div class="btn-group" style="width: 100%; margin-bottom: 10px;">
+                                    <!--<button type="button" id="color-chooser-btn" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">Color <span class="caret"></span></button>-->
+                                    <ul class="fc-color-picker" id="color-chooser">
+                                        <li><a class="text-primary" href="#"><i class="fas fa-square"></i></a></li>
+                                        <li><a class="text-warning" href="#"><i class="fas fa-square"></i></a></li>
+                                        <li><a class="text-success" href="#"><i class="fas fa-square"></i></a></li>
+                                        <li><a class="text-danger" href="#"><i class="fas fa-square"></i></a></li>
+                                        <li><a class="text-muted" href="#"><i class="fas fa-square"></i></a></li>
+                                    </ul>
+                                </div>
+                                <!-- /btn-group -->
+                                <div class="input-group">
+                                    <input id="new-event" type="text" class="form-control" placeholder="Event Title">
 
-                                    <li class="list-group-item">
-                                        <b>Số ngày đã nghỉ</b> <a class="float-right">@*@Model.totalDaysOff*@ 5</a>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <b>Số ngày nghỉ còn lại</b> <a class="float-right">@*@Model.daysLeft*@ 25</a>
-                                    </li>
-                                </ul>
+                                    <div class="input-group-append">
+                                        <button id="add-new-event" type="button" class="btn btn-primary">Add</button>
+                                    </div>
+                                    <!-- /btn-group -->
+                                </div>
+                                <!-- /input-group -->
                             </div>
-                            <!-- /.card-body -->
-                        </div>
-                        <div class="card">
-                            <div class="card-header">
-                                <h4 class="card-title">Chi tiết ngày nghỉ</h4>
-                            </div>
-                            <div class="card-body">
-                                <!-- the events -->
-                                <ul class="list-group list-group-unbordered mb-3">
-                                    @*@{ int day = 0;}
-                                        @foreach (DateTime item in Model.days)
-                                        {
-                                            day += 1;
-                                            <li class="list-group-item">
-                                                <b>Ngày @day </b> <a class="float-right">@item.ToString("dd/MM/yyyy")</a>
-                                            </li>
-                                        }*@
-                                </ul>
-                            </div>
-                            <!-- /.card-body -->
                         </div>
                     </div>
                 </div>
@@ -108,23 +120,13 @@
 @section scripts
 {
     <!-- fullCalendar 2.2.5 -->
-    <script src="@Url.Content("~/assets/plugins/moment/moment.min.js")"></script>
-    <script src="@Url.Content("~/assets/plugins/fullcalendar/main.min.js")"></script>
-    <script src="@Url.Content("~/assets/plugins/fullcalendar-daygrid/main.min.js")"></script>
-    <script src="@Url.Content("~/assets/plugins/fullcalendar-timegrid/main.min.js")"></script>
-    <script src="@Url.Content("~/assets/plugins/fullcalendar-interaction/main.min.js")"></script>
-    <script src="@Url.Content("~/assets/plugins/fullcalendar-bootstrap/main.min.js")"></script>
-
-    <!-- jQuery -->
-    <script src="~/assets/plugins/jquery/jquery.min.js"></script>
-    <!-- Bootstrap -->
-    <script src="~/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- jQuery UI -->
-    <script src="~/assets/plugins/jquery-ui/jquery-ui.min.js"></script>
-    <!-- AdminLTE App -->
-    <script src="~/assets/dist/js/adminlte.min.js"></script>
-    <!-- AdminLTE for demo purposes -->
-    <script src="~/assets/dist/js/demo.js"></script>
+    <script src="~/assets/plugins/moment/moment.min.js"></script>
+    <script src="~/assets/plugins/fullcalendar/main.min.js"></script>
+    <script src="~/assets/plugins/fullcalendar-daygrid/main.min.js"></script>
+    <script src="~/assets/plugins/fullcalendar-timegrid/main.min.js"></script>
+    <script src="~/assets/plugins/fullcalendar-interaction/main.min.js"></script>
+    <script src="~/assets/plugins/fullcalendar-bootstrap/main.min.js"></script>
+    <!-- Page specific script -->
     <script>
         $(function () {
 

@@ -33,16 +33,13 @@
                     <div class="card card-primary card-outline">
                         <div class="card-body box-profile">
                             <div class="text-center">
-                                <img class="profile-user-img img-fluid img-circle" src="~/images/TanDen_Logo_a105.jpg" style="height:100px;width:100px"
+                                <img class="profile-user-img img-fluid img-circle" src="~/images/@Model.EmpAvatar" style="height:100px;width:100px"
                                      alt="User profile picture">
                             </div>
 
                             <h3 class="profile-username text-center">@Model.EmpFullname</h3>
 
                             <p class="text-muted text-center">Admin</p>
-
-
-
                         </div>
                         <!-- /.card-body -->
                     </div>
@@ -61,10 +58,9 @@
                         </div><!-- /.card-header -->
                         <div class="card-body">
                             <div class="tab-content">
-
-
-                                <div class=" active tab-pane" id="settings">
+                                <div class="active tab-pane tabEdit" id="settings">
                                     <form class="form-horizontal" id="edit-admin" enctype="multipart/form-data" action="@Url.Action("EditAdmin","Admin")" method="post">
+                                        <input type="text" hidden class="form-control" id="Id" name="Id">
                                         <div class="form-group row">
                                             <label for="inputName" class="col-sm-2 col-form-label">Full Name:</label>
                                             <div class="col-sm-10">
@@ -107,13 +103,22 @@
                                         </div>
                                         <div class="form-group row">
                                             <div class="offset-sm-2 col-sm-10">
-                                                <button type="submit" id="btn-edit" class="btn btn-danger">Save Changes</button>
+                                                <button type="submit" id="btn-edit" class="btn btn-danger"
+                                                        @*data-id="@Model.EmpId"
+                                                        data-username="@Model.EmpUsername"
+                                                        data-fullname="@Model.EmpFullname"
+                                                        data-email="@Model.EmpEmail"
+                                                        data-phone="@Model.EmpPhone"
+                                                        data-address="@Model.EmpAddress"
+                                                        data-avatar="@Model.EmpAvatar"*@>
+                                                    Save Changes
+                                                </button>
                                             </div>
                                         </div>
                                     </form>
                                 </div>
 
-                                <div class="tab-pane" id="password">
+                                <div class="tab-pane tabPass" id="password">
                                     <form class="form-horizontal" id="edit-adminpass" enctype="multipart/form-data" action="@Url.Action("PasswordEmployee","Admin")" method="post">
                                         <div class="form-group row">
                                             <label for="inputName" class="col-sm-2 col-form-label">Current password</label>
@@ -184,12 +189,36 @@
         $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
         $('[data-mask]').inputmask()
 
+        //$('#edit-admin').on('show.bs.modal', function (event) {
+        //    var button = $(event.relatedTarget)
+        //    var tag = $(this)
+
+        //    //var button
+        //    var EmpId = button.data('id')
+        //    var EmpUsername = button.data('username')
+        //    var EmpFullname = button.data('fullname')
+        //    var EmpEmail = button.data('email')
+        //    var EmpPhone = button.data('phone')
+        //    var EmpAddress = button.data('address')
+        //    var EmpAvatarStream = button.data('avatar')
+
+        //    //modal.find
+        //    tag.find('.tabEdit #EmpId').val(EmpId)
+        //    tag.find('.tabEdit #UserName').val(EmpUsername)
+        //    tag.find('.tabEdit #FullName').val(EmpFullname)
+        //    tag.find('.tabEdit #Email').val(EmpEmail)
+        //    tag.find('.tabEdit #Phone').val(EmpPhone)
+        //    tag.find('.tabEdit #Address').val(EmpAddress)
+        //})
+
+
+
         $('#edit-admin').submit(function (e) {
-            e.preventDefault();
+            //e.preventDefault();
 
             $('#edit-admin').validate({
                 rules: {
-                    
+
                     FullName: {
                         required: true,
                     },
@@ -210,9 +239,6 @@
                     Address: {
                         required: true
                     },
-
-
-
                 },
                 messages: {
                     FullName: {
@@ -246,6 +272,7 @@
             });
             if ($('#edit-admin').valid()) {
                 var data = new FormData(this);
+                console.log(data.EmpId);
                 $(".modal-footer #btn-edit").attr("disabled", true);
 
                 $(".modal-footer #btn-edit").prepend('<span class="spinner-border spinner-border-sm mr-1" role="status" aria-hidden="true"></span>')
@@ -276,11 +303,8 @@
 
                     },
                     error: function (xhr, error, status) {
-                        //console.log(error, status);
-                        Toast.fire({
-                            icon: 'error',
-                            title: 'Chỉnh sửa thông tin không thành công!!'
-                        })
+                        defaultModal($("#modal-default"), error, status);
+                        $("#modal-default").modal('show');
                     }
                 });
             }
@@ -288,7 +312,7 @@
 
         });
         $('#edit-adminpass').submit(function (e) {
-            e.preventDefault();
+            //e.preventDefault();
             $('#edit-adminpass').validate({
                 rules: {
 

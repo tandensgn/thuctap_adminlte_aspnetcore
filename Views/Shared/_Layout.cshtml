@@ -1,5 +1,4 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -33,7 +32,7 @@
     <!-- SweetAlert2 -->
     <link rel="stylesheet" href="~/assets/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
 
-
+    @RenderSection("link", required: false)
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
@@ -98,16 +97,22 @@
 
     <!-- Page script -->
     <script>
+
+        // Hide Modal
         function hideModal() {
             $('.modal').modal('hide');
         }
+
         const Toast = Swal.mixin({
             toast: true,
             position: 'top-end',
             showConfirmButton: false,
             timer: 3000
         });
+
         // bsCustomFileInput.init();
+
+        // Sort
         attachSort();
         function attachSort() {
             $("#example1").DataTable({
@@ -115,6 +120,15 @@
                 "autoWidth": false,
             });
         }
+
+        // Default Modal
+        function defaultModal(modal, title, value) {
+
+            modal.find('.modal-header #modal-title').text(title)
+            modal.find('.modal-body p').text(value)
+
+        }
+
     </script>
     @RenderSection("scripts", required: false)
 </body>

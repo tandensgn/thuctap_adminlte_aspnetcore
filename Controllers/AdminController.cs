@@ -53,6 +53,10 @@ namespace AdminLTEASPNETEmployees.Controllers
         // Index //
         public IActionResult Index()
         {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            Employees em = _repository.GetEmployeesById(Int32.Parse(userId));
+            EmployeesReadDto emDTO = _mapper.Map<EmployeesReadDto>(em);
+            ViewBag.User = emDTO;
             var employeeItems = _repository.GetAllEmployees();
             var employeeDTO = _mapper.Map<IEnumerable<EmployeesReadDto>>(employeeItems);
             return View(employeeDTO);
@@ -63,6 +67,7 @@ namespace AdminLTEASPNETEmployees.Controllers
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             Employees em = _repository.GetEmployeesById(Int32.Parse(userId));
             EmployeesReadDto emDTO = _mapper.Map<EmployeesReadDto>(em);
+            ViewBag.User = emDTO;
             return View(emDTO);
         }
         // Edit Admin //
@@ -106,13 +111,7 @@ namespace AdminLTEASPNETEmployees.Controllers
                 _repository.UpdateEmployee(employee);
                 _repository.SaveChanges();
             }
-            Response response = new Response()
-            {
-                IsSuccess = true,
-
-                Message = "Change information successfully!"
-            };
-            return Json(JsonConvert.SerializeObject(response));
+            return RedirectToAction("Profile", "Admin");
         }
 
         // Showlist All Employees //
@@ -152,16 +151,15 @@ namespace AdminLTEASPNETEmployees.Controllers
         public IActionResult RemoveEmployee(int id)
         {
             Employees employee = _repository.GetEmployeesById(id);
+
             //if (employee.EmpAvatar != null)
             //{
-
             //    var uploads = Path.Combine(_hosting.WebRootPath, "images");
             //    var filePath = Path.Combine(uploads, employee.EmpAvatar);
             //    System.IO.File.Delete(filePath);
             //    _repository.RemoveEmployeeById(id);
             //    _repository.SaveChanges();
             //    return EmployeesList();
-
             //}
             //else
             //{
@@ -171,6 +169,7 @@ namespace AdminLTEASPNETEmployees.Controllers
             //    return EmployeesList();
             //}
 
+            //DeActive account
             employee.EmpStatus = "DeActive";
 
             _repository.UpdateEmployee(employee);
@@ -234,6 +233,10 @@ namespace AdminLTEASPNETEmployees.Controllers
 
         public IActionResult Calendar(int id)
         {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            Employees em = _repository.GetEmployeesById(Int32.Parse(userId));
+            EmployeesReadDto emDTO = _mapper.Map<EmployeesReadDto>(em);
+            ViewBag.User = emDTO;
             //var email = _repository.GetApprovedEmail(id);
             //var em = _repository.GetEmployeeById(id);
             //List<DateTime> days = new List<DateTime>();

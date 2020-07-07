@@ -142,7 +142,6 @@ D:\ThucTap\CongTyGiao\AdminLTEinASPNETCoreMVC\AdminLTEASPNETEmployees\obj\Debug\
 D:\ThucTap\CongTyGiao\AdminLTEinASPNETCoreMVC\AdminLTEASPNETEmployees\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_MainSidebar.cshtml.g.cs
 D:\ThucTap\CongTyGiao\AdminLTEinASPNETCoreMVC\AdminLTEASPNETEmployees\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Navbar.cshtml.g.cs
 D:\ThucTap\CongTyGiao\AdminLTEinASPNETCoreMVC\AdminLTEASPNETEmployees\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Modal.cshtml.g.cs
-D:\ThucTap\CongTyGiao\AdminLTEinASPNETCoreMVC\AdminLTEASPNETEmployees\obj\Debug\netcoreapp3.1\AdminLTEASPNETEmployees.csprojAssemblyReference.cache
 D:\ThucTap\CongTyGiao\AdminLTEinASPNETCoreMVC\AdminLTEASPNETEmployees\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_EmployeesList.cshtml.g.cs
 D:\ThucTap\CongTyGiao\AdminLTEinASPNETCoreMVC\AdminLTEASPNETEmployees\obj\Debug\netcoreapp3.1\Razor\Views\Login\Login.cshtml.g.cs
 D:\ThucTap\CongTyGiao\AdminLTEinASPNETCoreMVC\AdminLTEASPNETEmployees\bin\Debug\netcoreapp3.1\EO.Base.dll
@@ -156,3 +155,4 @@ D:\ThucTap\CongTyGiao\AdminLTEinASPNETCoreMVC\AdminLTEASPNETEmployees\obj\Debug\
 D:\ThucTap\CongTyGiao\AdminLTEinASPNETCoreMVC\AdminLTEASPNETEmployees\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Index.cshtml.g.cs
 D:\ThucTap\CongTyGiao\AdminLTEinASPNETCoreMVC\AdminLTEASPNETEmployees\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Calendar.cshtml.g.cs
 D:\ThucTap\CongTyGiao\AdminLTEinASPNETCoreMVC\AdminLTEASPNETEmployees\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Profile.cshtml.g.cs
+D:\ThucTap\CongTyGiao\AdminLTEinASPNETCoreMVC\AdminLTEASPNETEmployees\obj\Debug\netcoreapp3.1\AdminLTEASPNETEmployees.csprojAssemblyReference.cache
