@@ -35,7 +35,7 @@
 
                 <form id="login" action="@Url.Action("Login","Login")" method="post">
                     <div class="input-group mb-3">
-                        <input autofocus type="text" class="form-control" placeholder="User name" id="UserEmail" name="Email">
+                        <input autofocus type="text" class="form-control" placeholder="Enter Email" id="UserEmail" name="Email">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-envelope"></span>
@@ -60,7 +60,7 @@
                             </div>
                         </div>
                         <!-- /.col -->
-                        <div class="col-4">
+                        <div class="col-4 signInUser">
                             <button id="signin" type="submit" class="btn btn-primary btn-block">Sign In</button>
                         </div>
                         <!-- /.col -->
@@ -141,8 +141,10 @@
                 })
                 if ($('#login').valid()) {
                     var data = new FormData(this);
-                    console.log(data.Email);
-                    console.log(data.Password);
+                    $(".signInUser #signin").attr("disabled", true);
+
+                    $(".signInUser #signin").prepend('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"> </span>')
+
                     $('#checkLogin').empty();
 
                     $.ajax({
@@ -158,8 +160,10 @@
                         processData: false,
                         success: function (response) {
                             var a = JSON.parse(response);
+                            $('.signInUser #signin').attr("disabled", false);
+                            $('.signInUser #signin .spinner-border').remove();
                             if (a.IsSuccess === false) {
-
+                                
                                 
                                 var div = document.createElement('div');
                                 div.textContent = a.Message;
@@ -168,7 +172,9 @@
                                 $('#checkLogin').append(div);
                             }
                             if (a.IsSuccess === true) {
+                                
                                 window.location = a.url;
+
                             }
 
                         },

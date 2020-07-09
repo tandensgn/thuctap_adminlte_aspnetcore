@@ -189,7 +189,7 @@
                 var data = new FormData(this);
                 $(".modal-footer #btn-add").attr("disabled", true);
 
-                $(".modal-footer #btn-add").prepend('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>')
+                $(".modal-footer #btn-add").prepend('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"> </span>')
 
                 $.ajax({
                     url: this.action,
@@ -315,7 +315,7 @@
                 console.log(data.EmpId);
                 $(".modal-footer #btn-edit").attr("disabled", true);
 
-                $(".modal-footer #btn-edit").prepend('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>')
+                $(".modal-footer #btn-edit").prepend('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"> </span>')
 
                 $.ajax({
                     url: this.action,
@@ -396,7 +396,7 @@
                 }
                 else {
                     $(".modal-footer #btn-password").attr("disabled", true);
-                    $(".modal-footer #btn-password").prepend('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>')
+                    $(".modal-footer #btn-password").prepend('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"> </span>')
 
                     $.ajax({
                         url: this.action,
@@ -434,7 +434,7 @@
             var id = $(this).data('id')
             $(".modal-footer #delete-d").attr("disabled", true);
 
-            $(".modal-footer #delete-d").prepend('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>')
+            $(".modal-footer #delete-d").prepend('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"> </span>')
 
             $.ajax({
                 url: "/Admin/RemoveEmployee/" + id,
